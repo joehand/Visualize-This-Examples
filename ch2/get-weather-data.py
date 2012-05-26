@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-untitled.py
+get-weather-data.py
 
 Created by Joe Hand on 2012-03-17.
-Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+
+
 """
 
 import urllib

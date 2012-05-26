@@ -63,9 +63,9 @@ d3.csv("wunder-data.csv", function(data) {
   // Parse numbers, and sort by value.
  //data.forEach(function(d) { d.value = +d.value; });
   //data.sort(function(a, b) { return b.value - a.value; });
-
+  console.log(data);
   // Set the scale domain.
-  x.domain([0, d3.max(data, function(d) { return d.value; })]);
+  x.domain([0, d3.max(data, function(d) { console.log(d.value);return d.value; })]);
   y.domain(data.map(function(d) { return d.name; }));
 
   var bar = svg.selectAll("g.bar")
