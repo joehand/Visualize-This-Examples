@@ -10,7 +10,8 @@ First, the graph is created using R. This is pretty simple. You can set the labe
 
 The basic plot starts like this: 
 
-	barplot(hotdogs$Dogs.eaten, names.arg=hotdogs$Year, col="red", border=NA, xlab="Year", ylab="Hot Dogs and Buns (HDB) Eaten")
+	barplot(hotdogs$Dogs.eaten, names.arg=hotdogs$Year, col="red", border=NA, xlab="Year", 
+		ylab="Hot Dogs and Buns (HDB) Eaten")
 	
 Then to get the final plot we set some colors for years that have world records and add some spacing and a title:
 
@@ -26,7 +27,9 @@ record_fill_colors <- c()
 	}
 
 # Playing around with other barplot options: Adding spacing and title
-barplot(hotdogs$Dogs.eaten, names.arg=hotdogs$Year, col=record_fill_colors, border=NA, space=0.3, xlab="Year", ylab="Hot Dogs and Buns (HDB) Eaten", main="Nathan's Hot Dog Eating Contest Results, 1980 - 2010" )
+barplot(hotdogs$Dogs.eaten, names.arg=hotdogs$Year, col=record_fill_colors, border=NA, space=0.3, 
+	xlab="Year", ylab="Hot Dogs and Buns (HDB) Eaten", 
+	main="Nathan's Hot Dog Eating Contest Results, 1980 - 2010" )
 ~~~
 
 Also, TextMate and R play really well together =). 
@@ -47,4 +50,8 @@ This section uses more data from the hot dog eating contest. Once again, we make
 
 The R section went quickly. Import the data and plot it. Illustrator work was also pretty simple. Illustrator is great when you start to get the hang of it.
 
-I need to work on my colors.
+I need to work on my colors. 
+
+This is what I ended up with:
+![Final stacked bar](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part2_stacked/final_stacked.png "Hot Dog Eating")     
+ 
