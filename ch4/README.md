@@ -3,6 +3,8 @@
 
 In this chapter we look at using bar graphs to show data over time. Plus there are lots of hot dogs eaten. Fun!
 
+You can find all of the graphs/images in the sub directories.
+
 ##Part 1: Hot Dog Eating Contest Graph (Fig 4-5)
 
 ####Making the Graph with R
@@ -53,5 +55,6 @@ The R section went quickly. Import the data and plot it. Illustrator work was al
 I need to work on my colors. 
 
 This is what I ended up with:
+
 ![Final stacked bar](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part2_stacked/final_stacked.png "Hot Dog Eating")     
  
