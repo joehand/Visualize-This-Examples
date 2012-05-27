@@ -57,4 +57,25 @@ I need to work on my colors.
 This is what I ended up with:
 
 ![Final stacked bar](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part2_stacked/final_stacked.png "Hot Dog Eating")     
+
+
+##Part 3: Scatterplot
+
+The plot in R was pretty simple. The key takaway in this section was that you can plot something in R and then add stuff on to of the original plot.
+
+In this example we are plotting high density vertical lines then adding black points to plot:
+~~~
+# New plot with lines and then adding points
+plot(subscribers$Subscribers, type='h', ylim=c(0,30000), xlab='Day', ylab='Subscribers')
+points(subscribers$Subscribers, pch=19, col='black')
+~~~
+
+This one took a little more work with illustrator. Somewhere along the line my grid got shifted without me knowing. Luckily, I noticed and could see in the book where it was supposed to be. That could definitely be a problem if I was creating something new and didn't notice!
+
+Lesson: be careful and make sure the axis and tick marks are correct!
+
+Here is the final plot:
+
+![Final scatterplot](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part3_scatter/final_subscrivers.png "Flowing Data Subscribers") 
  
+
