@@ -1,7 +1,7 @@
 # Setting directory
 setwd('/Users/hand/Sites/_projects/flowing_data/')
 
-# Reading CSV file for Hot Dog Contests
+# Reading CSV file for Flowing Data subscibers
 subscribers <- read.csv('ch4/data/flowingdata_subscribers.csv',sep=',', header=TRUE)
 
 # First simple scatterplot 

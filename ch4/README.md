@@ -1,5 +1,6 @@
 #Chapter 4: Visualizing Patters Over Time
 ##Notes and Thoughts
+This readme will just track any notes and thoughts I have while going through the exercises in chapter 4 of Visualize This. I will also try to include the final plots in this readme.
 
 In this chapter we look at using bar graphs to show data over time. Plus there are lots of hot dogs eaten. Fun!
 
@@ -78,4 +79,50 @@ Here is the final plot:
 
 ![Final scatterplot](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part3_scatter/final_subscribers.png "Flowing Data Subscribers") 
  
+##Part 4: Continuous Data
+
+This section is all about various ways to graph continuous data. The idea is the same as the scatterplot, but what the plot represents is different: discrete data vs continuous data.
+
+###Part 4a: World Population
+This was mostly an exercise in using the graphing functionality in adobe illustrator. I think I will stick with using R for the initial plotting...
+
+Final plot: 
+
+![Final world pop](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part4_continuous/world_pop_final.png "World Population") 
+
+###Part 4b: Step Chart (USPS Rates)
+In continuous plots connecting one point to the next can be deceiving. A step chart does a better job of showing big jumps from one point to the next.
+
+We are going to be looking at the US postage rate changes from 1991 to 2009.
+
+####Plotting in R
+Woo. Back to plotting in R. 
+
+___Sidenote:___
+>Did I say how much I love using R in TextMate yet? Definitely get the R Bundle if you are using TextMate. You can run R right from TextMate and it will show you the code and all the plots. Then you can do what you want with the PDFs! Only downside so far? You cannot check the value of objects without running the whole file.
+
+Nice and easy to do the step chart. Lets clean this baby up in illustrator.
+
+![Final postage rate](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part4_continuous/us_postage_final.png "USPS Postage Rates") 
+
+###Part 4c: Smoothing & Estimation (US Unemployment)
+Checking out the scatterplot of the data with R. 
+
+Downside to using R in TextMate? The images are fixed size after running; you cant resize to see change aspect ratio of graph.
+
+The last graph felt a bit tricky in illustrator for some reason. Here is the final:
+
+![Final unemployment](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part4_continuous/unemployment_final.png "US Unemployment Rates") 
+
+
+##Conclusion
+Phew. That was a lot! Definitely learned a lot about illustrator in this chapter. It was interesting to see what Nathan did to make the graphs more readable. Some of the graphs from R started out not saying much. But after some work with illustrator they told a full story and looked nice!
+
+The use of R in this chapter was less than complex. Mostly just used the basic R commands then brought everything into illustrator. 
+
+The most important part of this chapter was the look at various ways to plot data. By using simple but well know data examples Nathan did a good job of communicating the different uses for the types of plots we explored.
+
+I look forward to diving into R more. But the next chapter we move on to using HTML, CSS, and JS to plot instead! That will also be fun.
+
+
 
