@@ -76,6 +76,6 @@ Lesson: be careful and make sure the axis and tick marks are correct!
 
 Here is the final plot:
 
-![Final scatterplot](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part3_scatter/final_subscrivers.png "Flowing Data Subscribers") 
+![Final scatterplot](https://github.com/joehand/Visualize-This-Examples/raw/master/ch4/part3_scatter/final_subscribers.png "Flowing Data Subscribers") 
  
 
