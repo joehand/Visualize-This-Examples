@@ -20,3 +20,5 @@ Protovis is pretty cool. Makes it easy!
 Okay, moving it to D3 was harder than I expected. It seems like everything in d3 is manipulated directly where there used to be APIs in protovis. It is definitely nicer but it was not a simple transfer. The key was finding a helpful [example](http://bl.ocks.org/1305337).
 
 Hopefully - now that I have a better idea of the differences - moving forward going from Protovis to D3 will be easier.
+
+You can see the working example in in this [block](http://bl.ocks.org/2848073). They look almost the same.
