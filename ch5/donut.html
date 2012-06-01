@@ -6,7 +6,20 @@
   <script src="../libs/protovis.min.js"></script>
   <script src="../libs/d3.v2.min.js"></script>
   <style>
-	#figure {
+	body {
+		width:950px;
+		margin:0 auto;
+	}
+	h2{
+		text-align:center;
+		width:350px;
+	}
+	#figure, #figure2 {
+		width: 400px;
+		height: 400px;
+		float:left;
+	}
+	#figure2{
 		width: 400px;
 		height: 400px;
 	}
@@ -16,6 +29,7 @@
 <body>
 
  	<div id="figure">
+		<h2>Made with Protovis</h2>
 		<script type="text/javascript+protovis">
 		
 			//Survey Data from FlowingData for the Donut Chart
@@ -64,8 +78,10 @@
 		</script>
 	
 	</div><!-- @end #figure -->
-	
-		
+	<div id="figure2">
+		<h2>Made with D3</h2>
+		<div id="innerFig"></div>
+	</div>
 		<script type="text/javascript">
 		
 			//Survey Data from FlowingData for the Donut Chart
@@ -90,7 +106,7 @@
 			
 			//Insert an svg element
 			
-			var svg = d3.select("body").append("svg:svg")
+			var svg = d3.select("#figure2").append("svg:svg")
 				.attr("width", w)
 				.attr("height", h)
 			  .append("svg:g")
@@ -108,7 +124,7 @@
 			    .append("svg:title")
 			      .text(function(d) {return String(d.data) + " votes";})
 			
-			g.filter(function(d) {return d.endAngle - d.startAngle > 0.2; }).append("svg:text")
+			g.append("svg:text")
 				.attr("dy", "0.35em")
 				.attr("text-anchor", "middle")
 				.attr("transform", function(d) { return "translate(" + arc.centroid(d) + ")rotate(" + angle(d) + ")"; })
@@ -132,7 +148,6 @@
 		
 		
 		</script>
-		
   
 </body>
 </html>
