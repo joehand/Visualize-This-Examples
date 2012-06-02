@@ -1,0 +1,183 @@
+<!DOCTYPE html>  
+<html>
+<head>
+  <title>Stacked Bar Chart</title>
+
+  <script src="../libs/d3.v2.min.js"></script>	
+  <style>
+	
+	.figure-wrapper {
+		width: 495px;
+		font-family: Georgia;
+	}
+	.figure {
+		height: 400px;
+	}
+	
+	.figure svg {
+		font-size:10px;
+		font-family:sans-serif;
+		-webkit-font-smoothing: antialiased;
+	}
+	.lead-in {
+		padding-left: 14px;
+	}
+	h1 {
+		font-size: 18px;
+		text-transform: uppercase;
+		margin-bottom: 0px;
+	}
+	p {
+		font-size: 13px;
+		line-height: 1.4em;
+	}
+	.label {
+		position: absolute;
+		left: 445px;
+		font-size: 12px;
+		font-style: italic;
+	}
+	.approve { top: 332px; }
+	.disapprove { top: 218px; }
+	.no-opinion { top: 128px; }
+
+  </style>
+  <script>
+	var data = {
+		"Issue":["Race Relations", "Education", "Terrorism", "Energy Policy", 
+			"Foreign Affairs", "Environment", "Situation in Iraq",
+			"Taxes", "Healthcare Policy", "Economy", "Situation in Afghanistan",
+			"Federal Budget Deficit", "Immigration"],
+		"Approve":[52, 49, 48, 47, 44, 43, 41, 41, 40, 38, 36, 31, 29],
+		"Disapprove":[38, 40, 45, 42, 48, 51, 53, 54, 57, 59, 57, 64, 62],
+		"None": [10, 11, 7, 11, 8, 6, 6, 5, 3, 3, 7, 5, 9]
+	};
+	
+	
+  </script>
+</head>
+
+<body>
+	
+	
+
+	<!--  d3 version of chart -->
+	<div id="figure1" class="figure-wrapper">
+		<div class=="lead-in">
+					<h1>Approval Ratings for Barack Obama</h1>
+					<p>Recent Gallup and CBS polls show a 52% approval rating for Barack Obama in race relations. It is the only issue out of the below thirteen where he has a majority approval. In eight of the thirteen, results show a majority disapproval.</p>
+		</div>
+		<div class="figure">
+			<div class="label no-opinion">No Opinion</div>
+			<div class="label approve">Approve</div>
+			<div class="label disapprove">Disapprove</div>
+
+		</div><!-- @end figure -->
+	</div><!-- @end figure-wrapper -->
+	
+	  <script type="text/javascript">
+	
+	//setting up graph sizes, padding, and colors
+	var w = 460,
+	    h = 360,
+	    p = [15, 20, 95, 35],
+	    x = d3.scale.ordinal().rangeRoundBands([0, w - p[1] - p[3]], 0.2),
+	    y = d3.scale.linear().range([0, h - p[0] - p[2]]),
+	    z = d3.scale.ordinal().range(["#809EAD", "#B1C0C9", "#D7D6CB"])
+
+	var svg = d3.select(".figure").append("svg:svg")
+	    .attr("width", w)
+	    .attr("height", h)
+	  .append("svg:g")
+	    .attr("transform", "translate(" + p[3] + "," + (h - p[2]) + ")");
+	
+    //adding data via csv (because the example used this and I couldn't figure out how to use javascript object data)
+	d3.csv("obama.csv", function(ratings) {
+
+	  // Transpose the data into layers by cause.
+	  var issues = d3.layout.stack()(["Approve","Disapprove","None"].map(function(issue) {
+	    return ratings.map(function(d) {
+	      return {x: d.category, y: +d[issue]};
+	    });
+	  }));
+
+	  // Compute the x-domain (by date) and y-domain (by top).
+	  x.domain(issues[0].map(function(d) { return d.x; }));
+	  y.domain([0, d3.max(issues[issues.length - 1], function(d) { return d.y0 + d.y; })]);
+
+	  // Add a group for each issue.
+	  var issue = svg.selectAll("g.issue")
+	      .data(issues)
+	    .enter().append("svg:g")
+	      .attr("class", "issue")
+	      .style("fill", function(d, i) { return z(i); })
+	      .style("stroke", function(d, i) { return d3.rgb(z(i)).darker(); })
+		  .attr("shape-rendering", "crispEdges")
+		  .on("mouseover", function(d) {return d3.select(this).selectAll('a').attr("fill", "#555")})
+		  .on("mouseout", function(d) {return d3.select(this).selectAll('a').attr("fill", z[d])});
+	
+	  // Add a rect for each issue
+	 // first is just the a wrapper to hold title
+	 var rectData = issue.selectAll("g")
+	      .data(Object)
+	    .enter().append("svg:a")
+		  .attr("title", function(d) {return d.y + "%"});
+	
+	 // now adding actual rectangle
+	 rectData.append("svg:rect")
+	      .attr("x", function(d) { return x(d.x); })
+	      .attr("y", function(d) { return -y(d.y0) - y(d.y); })
+	      .attr("height", function(d) { return y(d.y); })
+	      .attr("width", x.rangeBand());
+	
+
+	 // and adding text label
+	 var dataText = issue.selectAll("text")
+		  .data(Object)
+		.enter().append("svg:text")
+		  .attr("x", function(d) { return x(d.x) + x.rangeBand()/2; })
+		  .attr("y", function(d) { return (-y(d.y0) - y(d.y)) + y(d.y)/2; })
+		  .attr("text-anchor", "middle")
+		  .attr("fill", "rgb(255,255,255)")
+		  .attr("stroke", "none")
+		  .text(function(d) { return d.y > 11 ? d.y : null; });
+	
+	  // Add a label per issue.
+	  var label = svg.selectAll("text.issue")
+	      .data(x.domain())
+	    .enter().append("svg:text")
+		  .attr("transform", function(d) {
+				return "rotate(-45)translate(" + (x(d) - x.rangeBand())*0.7 + "," + x(d)*0.7 + ")";
+		   })
+		  .attr("dx", "1.9em")
+		  .attr("dy", "1.9em")
+	      .attr("text-anchor", "end")
+	      .attr("class", "issue")
+		  .text(function(d) {return data.Issue[d-1];});
+
+	  // Add y-axis rules and labels
+	  var rule = svg.selectAll("g.rule")
+	      .data(y.ticks(10))
+	    .enter().append("svg:g")
+	      .attr("class", "rule")
+	      .attr("transform", function(d) { return "translate(" + -p[3]/2 + "," + -y(d) + ")"; });
+
+	  rule.append("svg:line")
+	      .attr("x2", function(d) { return d > 0 ? 15 : w - p[3]; })
+	      .style("stroke", function(d) { return d > 0 ? "rgba(0,0,0,0.3)" : "#000"; })
+		  .attr("stroke-width", "1")
+		  .attr("shape-rendering", "crispEdges")
+
+	  rule.append("svg:text")
+		  .attr("text-anchor", "middle") // text-align: right
+	      .attr("dx", "0.75em")
+	      .attr("dy", "-0.5em")	
+		  .text(function(d) { return d === 100 ? '100%' : d;}); 
+	});
+
+	    </script>
+
+
+</body>
+
+</html>
